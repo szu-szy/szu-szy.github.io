@@ -9,7 +9,7 @@ import {
 export const initialState: ReduxStateType = {
   favourites: [],
   movies: [],
-  filterMovies: [],
+  filtedMovies: [],
   searchText: '',
 };
 
@@ -28,7 +28,7 @@ const reducer = (state = initialState, action: ReduxActionType) => {
     case SET_SEARCH_TEXT:
       return {
         ...state,
-        filterMovies: [
+        filtedMovies: [
           ...state.movies.filter((movie) =>
             movie['im:name'].label.includes(action.searchText)
           ),

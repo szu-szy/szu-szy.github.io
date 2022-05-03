@@ -15,7 +15,7 @@ enum REDUX_ACTION_TYPE {
 export type ReduxStateType = {
   favourites: MovieType[];
   movies: MovieType[];
-  filterMovies: MovieType[];
+  filtedMovies: MovieType[];
   searchText: string;
 };
 

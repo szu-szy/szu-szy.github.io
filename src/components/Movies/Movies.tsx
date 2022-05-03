@@ -7,9 +7,15 @@ import Banner from '../Banner/Banner';
 import { MovieType } from '../Movie/Movie-types';
 
 const Movies = () => {
-  const movies = useSelector<ReduxStateType, MovieType[]>(({ movies }) => movies);
-  const filterMovies = useSelector<ReduxStateType, MovieType[]>(({ filterMovies }) => filterMovies);
-  const searchText = useSelector<ReduxStateType, string>(({ searchText }) => searchText);
+  const movies = useSelector<ReduxStateType, MovieType[]>(
+    ({ movies }) => movies
+  );
+  const filtedMovies = useSelector<ReduxStateType, MovieType[]>(
+    ({ filtedMovies }) => filtedMovies
+  );
+  const searchText = useSelector<ReduxStateType, string>(
+    ({ searchText }) => searchText
+  );
   const [currentMovies, setCurrentMovies] = useState<MovieType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -20,7 +26,9 @@ const Movies = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const data = await fetch('https://itunes.apple.com/us/rss/topmovies/limit=10/json');
+      const data = await fetch(
+        'https://itunes.apple.com/us/rss/topmovies/limit=10/json'
+      );
       if (!isSuccess(data.status)) {
         const { errors } = await data.json();
         setIsError(true);
@@ -37,24 +45,23 @@ const Movies = () => {
     }
   };
 
+  const getMovies = () =>
+    movies &&
+    movies.map((movie, index) => (
+      <Banner key={movie.id.attributes['im:id']} movie={movie} index={index} />
+    ));
+
+  const getFilteredMovies = () =>
+    filtedMovies &&
+    filtedMovies.map((movie, index) => (
+      <Banner key={movie.id.attributes['im:id']} movie={movie} index={index} />
+    ));
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  useEffect(() => {
-    if (searchText.length >= 3) setCurrentMovies(filterMovies);
-    else setCurrentMovies(movies);
-  }, [searchText])
-
-  return (
-    <>
-      {
-        currentMovies && currentMovies.map((movie, index) => (
-          <Banner key={movie.id.attributes['im:id']} movie={movie} index={index} />
-        ))
-      }
-    </>
-  );
+  return <>{searchText.length >= 3 ? getFilteredMovies() : getMovies()}</>;
 };
 
 export default Movies;
