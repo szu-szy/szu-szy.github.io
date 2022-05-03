@@ -1,0 +1,27 @@
+.search {
+  align-items: center;
+  display: flex;
+}
+.bar {
+  background: #fff;
+  height: 30px;
+  width: 400px;
+  transition: .5s;
+}
+.barShown {
+  transition: .5s;
+  transform: translateY(0px);
+}
+.barClosed {
+  transition: .5s;
+  transform: translateY(-50px);
+}
+.shown {
+  width: 400px;
+}
+.icon {
+  cursor: pointer;
+  height: auto;
+  width: 24px;
+  transition: .5s;
+}

@@ -1,0 +1,20 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #141414;
+  color: #e5e5e5;
+  font-family: 'Lucida Sans';
+
+  a {
+    cursor: pointer;
+    transition: .5s;
+
+    &:hover {
+      color: #b3b3b3;
+    }
+  }
+}

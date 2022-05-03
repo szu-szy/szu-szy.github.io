@@ -1,0 +1,38 @@
+.banner {
+  animation: fadeIn 0.5s;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  margin: 10px 20px;
+  transition: .5s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+.content {
+  padding: 0 10px;
+}
+.image {
+  padding: 0 20px;
+}
+.header {
+  color: #ccc;
+  text-decoration: none;
+  transition: 0.5s;
+
+  &:hover {
+    color: #666;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
